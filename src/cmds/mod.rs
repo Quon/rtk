@@ -9,4 +9,5 @@ pub mod jvm;
 pub mod python;
 pub mod ruby;
 pub mod rust;
+pub mod svn;
 pub mod system;
