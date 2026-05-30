@@ -1,0 +1,5 @@
+ M      src/main.rs
+M       src/lib.rs
+?       newfile.txt
+A       added.rs
+ D      deleted.rs

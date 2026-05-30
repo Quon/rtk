@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log>
+<logentry revision="12345">
+<author>user</author>
+<date>2024-01-15T02:30:00.000000Z</date>
+<msg>Fix bug in parser</msg>
+</logentry>
+<logentry revision="12344">
+<author>dev2</author>
+<date>2024-01-14T10:15:00.000000Z</date>
+<msg>Added new feature</msg>
+</logentry>
+</log>

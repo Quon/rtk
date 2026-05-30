@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<info>
+<entry kind="dir" path="." revision="12345">
+<url>https://svn.example.com/svn/project/trunk</url>
+<relative-url>^/trunk</relative-url>
+<repository>
+<root>https://svn.example.com/svn/project</root>
+<uuid>abc-def-123</uuid>
+</repository>
+<commit revision="12344">
+<author>user</author>
+<date>2024-01-15T02:30:00.000000Z</date>
+</commit>
+</entry>
+</info>
