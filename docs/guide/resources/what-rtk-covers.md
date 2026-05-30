@@ -21,6 +21,19 @@ Typical savings: 60-99%.
 | `git show` | 70% | Same as diff |
 | `git stash list` | 75% | Compact one-line per entry |
 
+## Subversion (svn)
+
+| Command | Savings | What changes |
+|---------|---------|--------------|
+| `svn status` | 60% | Normalized whitespace, status + path only |
+| `svn log` | 80% | `rN author date subject` — one line per entry, XML parsed |
+| `svn diff` | 70% | Index/=== headers stripped, revision markers compacted |
+| `svn info` | 80% | URL, Revision, Last Changed only — XML parsed |
+| `svn blame` | 50% | Leading whitespace stripped, columns normalized |
+| `svn add` | 50% | Normalized status + path |
+| `svn commit` | 70% | Only "Committed revision N." displayed |
+| `svn update` | 70% | Action lines + "Updated to rN" |
+
 ## GitHub CLI
 
 | Command | Savings | What changes |

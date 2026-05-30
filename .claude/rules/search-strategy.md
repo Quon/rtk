@@ -40,6 +40,7 @@ src/
 │   └── session_cmd.rs         ← Session adoption reporting
 ├── cmds/                      ← Command filter modules
 │   ├── git/                   ← git, gh, gt, diff
+│   ├── svn/                   ← svn status/log/diff/info/blame/add/commit/update
 │   ├── rust/                  ← cargo, runner (err/test)
 │   ├── js/                    ← npm, pnpm, vitest, lint, tsc, next, prettier, playwright, prisma
 │   ├── python/                ← ruff, pytest, mypy, pip
