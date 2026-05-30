@@ -837,6 +837,15 @@ fn rewrite_segment_inner(
         }
     }
 
+    // svn with --xml produces machine-readable XML output that rtk filtering
+    // would corrupt — skip rewrite so the caller gets the raw XML.
+    if rule.rtk_cmd == "rtk svn" {
+        let args_lower = cmd_part.to_lowercase();
+        if args_lower.contains("--xml") {
+            return None;
+        }
+    }
+
     // Try each rewrite prefix (longest first) with word-boundary check
     for &prefix in rule.rewrite_prefixes {
         if let Some(rest) = strip_word_prefix(cmd_part, prefix) {

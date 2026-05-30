@@ -878,6 +878,15 @@ pub const RULES: &[RtkRule] = &[
         subcmd_savings: &[],
         subcmd_status: &[],
     },
+    RtkRule {
+        pattern: r"^svn\s+(status|log|diff|info|blame|add|commit|update|up)",
+        rtk_cmd: "rtk svn",
+        rewrite_prefixes: &["svn"],
+        category: "VCS",
+        savings_pct: 70.0,
+        subcmd_savings: &[("log", 65.0), ("info", 60.0)],
+        subcmd_status: &[],
+    },
 ];
 
 pub const IGNORED_PREFIXES: &[&str] = &[

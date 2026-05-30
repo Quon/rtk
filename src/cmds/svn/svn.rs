@@ -73,15 +73,18 @@ pub fn run_status(args: &[String], _verbose: u8) -> Result<i32> {
 }
 
 pub fn run_log(args: &[String], _verbose: u8) -> Result<i32> {
+    // If user explicitly requested --xml, they want raw XML output — passthrough
+    let has_xml = args.iter().any(|a| a == "--xml");
+    if has_xml {
+        let os_args: Vec<OsString> = std::iter::once("log".into())
+            .chain(args.iter().map(|s| OsString::from(s.as_str())))
+            .collect();
+        return crate::core::runner::run_passthrough("svn", &os_args, _verbose);
+    }
+
     let mut cmd = resolved_command("svn");
     cmd.args(["log", "--xml"]);
-
-    // Append user args, but strip --xml if they provided it (we already added it)
-    for arg in args {
-        if arg != "--xml" {
-            cmd.arg(arg);
-        }
-    }
+    cmd.args(args);
 
     runner::run_filtered(
         cmd,
@@ -107,14 +110,18 @@ pub fn run_diff(args: &[String], _verbose: u8) -> Result<i32> {
 }
 
 pub fn run_info(args: &[String], _verbose: u8) -> Result<i32> {
+    // If user explicitly requested --xml, they want raw XML output — passthrough
+    let has_xml = args.iter().any(|a| a == "--xml");
+    if has_xml {
+        let os_args: Vec<OsString> = std::iter::once("info".into())
+            .chain(args.iter().map(|s| OsString::from(s.as_str())))
+            .collect();
+        return crate::core::runner::run_passthrough("svn", &os_args, _verbose);
+    }
+
     let mut cmd = resolved_command("svn");
     cmd.args(["info", "--xml"]);
-
-    for arg in args {
-        if arg != "--xml" {
-            cmd.arg(arg);
-        }
-    }
+    cmd.args(args);
 
     runner::run_filtered(
         cmd,
