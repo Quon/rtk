@@ -19,7 +19,7 @@ RTK must be installed and available in `$PATH`:
 ```bash
 brew install rtk
 # or
-curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Quon/rtk/refs/heads/master/install.sh | sh
 ```
 
 ### Install the plugin

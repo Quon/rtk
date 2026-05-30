@@ -28,13 +28,13 @@ If both commands work, RTK is already installed. Skip to [Project initialization
 ## Quick install (Linux and macOS)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/master/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Quon/rtk/master/install.sh | sh
 ```
 
 ## Homebrew (macOS and Linux)
 
 ```bash
-brew install rtk-ai/tap/rtk
+brew install Quon/tap/rtk
 ```
 
 ## Cargo
@@ -44,12 +44,12 @@ brew install rtk-ai/tap/rtk
 :::
 
 ```bash
-cargo install --git https://github.com/rtk-ai/rtk rtk
+cargo install --git https://github.com/Quon/rtk rtk
 ```
 
 ## Pre-built binaries (Windows, Linux, macOS)
 
-Download from [GitHub releases](https://github.com/rtk-ai/rtk/releases):
+Download from [GitHub releases](https://github.com/Quon/rtk/releases):
 
 - macOS: `rtk-x86_64-apple-darwin.tar.gz` / `rtk-aarch64-apple-darwin.tar.gz`
 - Linux: `rtk-x86_64-unknown-linux-musl.tar.gz` / `rtk-aarch64-unknown-linux-gnu.tar.gz`

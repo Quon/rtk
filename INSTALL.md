@@ -44,7 +44,7 @@ cargo uninstall rtk
 ### Quick Install (Linux/macOS)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/master/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Quon/rtk/master/install.sh | sh
 ```
 
 After installation, **verify you have the correct rtk**:
@@ -56,7 +56,7 @@ rtk gain  # Must show token savings stats (not "command not found")
 
 ```bash
 # From rtk-ai repository (NOT reachingforthejack!)
-cargo install --git https://github.com/rtk-ai/rtk
+cargo install --git https://github.com/Quon/rtk
 
 # OR (if published and correct on crates.io)
 cargo install rtk
@@ -179,7 +179,7 @@ rtk init --show
 ### First-Time User (Recommended)
 ```bash
 # 1. Install RTK
-cargo install --git https://github.com/rtk-ai/rtk
+cargo install --git https://github.com/Quon/rtk
 rtk gain  # Verify (must show token stats)
 
 # 2. Setup with prompts

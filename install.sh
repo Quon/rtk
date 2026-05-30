@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
-# rtk installer - https://github.com/rtk-ai/rtk
-# Usage: curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+# rtk installer - https://github.com/Quon/rtk
+# Usage: curl -fsSL https://raw.githubusercontent.com/Quon/rtk/refs/heads/master/install.sh | sh
 
 set -e
 
-REPO="rtk-ai/rtk"
+REPO="Quon/rtk"
 BINARY_NAME="rtk"
 INSTALL_DIR="${RTK_INSTALL_DIR:-$HOME/.local/bin}"
 
