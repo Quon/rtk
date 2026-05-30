@@ -19,6 +19,7 @@ use cmds::jvm::gradlew_cmd;
 use cmds::python::{mypy_cmd, pip_cmd, pytest_cmd, ruff_cmd};
 use cmds::ruby::{rake_cmd, rspec_cmd, rubocop_cmd};
 use cmds::rust::{cargo_cmd, runner};
+use cmds::svn::svn;
 use cmds::system::{
     deps, env_cmd, find_cmd, format_cmd, grep_cmd, json_cmd, local_llm, log_cmd, ls, pipe_cmd,
     read, summary, tree, wc_cmd,
@@ -120,6 +121,12 @@ enum Commands {
         /// Force model download
         #[arg(long)]
         force_download: bool,
+    },
+
+    /// Subversion commands with compact output
+    Svn {
+        #[command(subcommand)]
+        command: SvnCommands,
     },
 
     /// Git commands with compact output
@@ -868,6 +875,62 @@ enum GitCommands {
 }
 
 #[derive(Debug, Subcommand)]
+enum SvnCommands {
+    /// Condensed status output
+    Status {
+        /// Additional svn status arguments
+        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
+        args: Vec<String>,
+    },
+    /// Compact log output
+    Log {
+        /// Additional svn log arguments
+        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
+        args: Vec<String>,
+    },
+    /// Clean diff output
+    Diff {
+        /// Additional svn diff arguments
+        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
+        args: Vec<String>,
+    },
+    /// Essential info only (URL, Revision, Last Changed)
+    Info {
+        /// Additional svn info arguments
+        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
+        args: Vec<String>,
+    },
+    /// Compact blame/annotate output
+    Blame {
+        /// Additional svn blame arguments
+        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
+        args: Vec<String>,
+    },
+    /// Compact add output
+    Add {
+        /// Additional svn add arguments
+        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
+        args: Vec<String>,
+    },
+    /// Compact commit output
+    Commit {
+        /// Additional svn commit arguments
+        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
+        args: Vec<String>,
+    },
+    /// Compact update output
+    #[command(alias = "up")]
+    Update {
+        /// Additional svn update arguments
+        #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
+        args: Vec<String>,
+    },
+    /// Passthrough: runs any unsupported svn subcommand directly
+    #[command(external_subcommand)]
+    Other(Vec<OsString>),
+}
+
+#[derive(Debug, Subcommand)]
 enum PnpmCommands {
     /// List installed packages (ultra-dense)
     List {
@@ -1479,6 +1542,18 @@ fn run_cli() -> Result<i32> {
             local_llm::run(&file, &model, force_download, cli.verbose)?;
             0
         }
+
+        Commands::Svn { command } => match command {
+            SvnCommands::Status { args } => svn::run_status(&args, cli.verbose)?,
+            SvnCommands::Log { args } => svn::run_log(&args, cli.verbose)?,
+            SvnCommands::Diff { args } => svn::run_diff(&args, cli.verbose)?,
+            SvnCommands::Info { args } => svn::run_info(&args, cli.verbose)?,
+            SvnCommands::Blame { args } => svn::run_blame(&args, cli.verbose)?,
+            SvnCommands::Add { args } => svn::run_add(&args, cli.verbose)?,
+            SvnCommands::Commit { args } => svn::run_commit(&args, cli.verbose)?,
+            SvnCommands::Update { args } => svn::run_update(&args, cli.verbose)?,
+            SvnCommands::Other(args) => svn::run_other(&args, cli.verbose)?,
+        },
 
         Commands::Git {
             directory,
@@ -2492,6 +2567,7 @@ fn is_operational_command(cmd: &Commands) -> bool {
             | Commands::Tree { .. }
             | Commands::Read { .. }
             | Commands::Smart { .. }
+            | Commands::Svn { .. }
             | Commands::Git { .. }
             | Commands::Gh { .. }
             | Commands::Glab { .. }
